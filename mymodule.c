@@ -37,6 +37,6 @@ static void my_exit(void){
 
 module_init(my_init);
 module_exit(my_exit);
-MODULE_AUTHOR("DR");
-MODULE_DESCRIPTION("Standard timer example");
+MODULE_AUTHOR("Dmitri Roukin");
+MODULE_DESCRIPTION("Standard timer");
 MODULE_LICENSE("GPL");
