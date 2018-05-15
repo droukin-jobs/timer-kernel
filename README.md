@@ -9,10 +9,12 @@ This is a simple kernel module that prints a message every 300ms.
 
 As root do the following to test the module:
 
-`insmod mymodule.ko`
-`sleep 10`
-`rmmod mymodule.ko`
-`dmesg`
+```
+insmod mymodule.ko
+sleep 10
+rmmod mymodule.ko
+dmesg
+```
 
 ## TODO
 
