@@ -6,12 +6,19 @@
 
 static struct timer_list my_timer;
 
-static unsigned long d = 10;
+/* set the timer period */
+
+#define TIMEOUT 300
+
+/* limit the execution times to 10 */
+
+#define LIMIT 10
+static unsigned long d = LIMIT;
 void my_timer_callback(unsigned long data){
 	printk("%s called (%ld), data=%lu.\n", __FUNCTION__, jiffies, d);
 	int retval;
 	if(d--){
-		retval = mod_timer( &my_timer, jiffies + msecs_to_jiffies(300) );
+		retval = mod_timer( &my_timer, jiffies + msecs_to_jiffies(TIMEOUT) );
 		if (retval) printk("Timer firing failed \n");
 	}
 }
@@ -20,10 +27,10 @@ static int __init my_init(void){
 	int retval;
 	printk("Timer module loaded\n");
 
-	setup_timer(&my_timer, my_timer_callback, 11);
-	printk("Setup timer to fire in 300ms (%ld)\n", jiffies);
+	setup_timer(&my_timer, my_timer_callback, 0);
+	printk("Setup timer to fire in %dms (%ld)\n", TIMEOUT, jiffies);
 
-	retval = mod_timer( &my_timer, jiffies + msecs_to_jiffies(300) );
+	retval = mod_timer( &my_timer, jiffies + msecs_to_jiffies(TIMEOUT) );
 	if (retval) printk("Timer firing failed \n");
 	return 0;
 }
